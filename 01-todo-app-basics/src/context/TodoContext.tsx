@@ -1,16 +1,25 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { Todo } from "../types/todo";
 
+type FilterType = "all" | "completed" | "uncompleted";
+
 interface TodoContextType {
   todos: Todo[];
+  filter: FilterType;
   addTodo: (text: string) => void;
   deleteTodo: (id: string) => void;
   toggleTodo: (id: string) => void;
+  updateTodo: (id: string, newtext: string) => void;
+  setFilter: (filterType: FilterType) => void;
 }
 
 const TodoContext = createContext<TodoContextType | undefined>(undefined);
 
-export default function TodoProvider({children}: {children: React.ReactNode}) {
+export default function TodoProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [todos, setTodos] = useState<Todo[]>(() => {
     const jsonTodos = localStorage.getItem("todos");
     try {
@@ -18,6 +27,18 @@ export default function TodoProvider({children}: {children: React.ReactNode}) {
     } catch {
       // JSON inavlide
       return [];
+    }
+  });
+  const [filter, setFilter] = useState<FilterType>("all");
+
+  const filteredTodos = todos.filter((todo) => {
+    switch (filter) {
+      case "completed":
+        return todo.isCompleted;
+      case "uncompleted":
+        return !todo.isCompleted;
+      default:
+        return true;
     }
   });
 
@@ -50,8 +71,28 @@ export default function TodoProvider({children}: {children: React.ReactNode}) {
     );
   };
 
+  const updateTodo = (id: string, newText: string) => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id
+          ? { ...todo, text: newText ? newText : todo.text }
+          : todo,
+      ),
+    );
+  };
+
   return (
-    <TodoContext.Provider value={{ todos, toggleTodo, addTodo, deleteTodo }}>
+    <TodoContext.Provider
+      value={{
+        todos: filteredTodos,
+        toggleTodo,
+        addTodo,
+        deleteTodo,
+        setFilter,
+        updateTodo,
+        filter,
+      }}
+    >
       {children}
     </TodoContext.Provider>
   );

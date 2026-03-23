@@ -1,7 +1,15 @@
+import Header from "./components/Header";
+import TodoFilter from "./components/TodoFilter";
+import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
+
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold mb-4">01 Todo App (Basics)</h1>
+      <Header />
+      <TodoForm />
+      <TodoFilter />
+      <TodoList />
     </>
   );
 }
