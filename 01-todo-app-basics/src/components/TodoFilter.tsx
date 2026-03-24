@@ -13,7 +13,7 @@ const TodoFilter = () => {
             : "text-gray-500 pl-2"
         }
       >
-        Tous
+        Toutes
       </button>
       <button
         onClick={() => setFilter("completed")}

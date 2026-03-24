@@ -56,7 +56,7 @@ export default function TodoProvider({
       createdAt: Date.now(),
     };
 
-    setTodos((prev) => [...prev, newTodo]);
+    setTodos((prev) => [newTodo, ...prev]);
   };
 
   const deleteTodo = (id: string) => {
