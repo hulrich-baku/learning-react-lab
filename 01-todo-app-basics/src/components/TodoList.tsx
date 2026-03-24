@@ -5,7 +5,7 @@ const TodoList = () => {
   const todoContext = useTodos();
   
   return (
-    <div>
+    <div className="mx-4">
       {todoContext.todos.map((todo) => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
