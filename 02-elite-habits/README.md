@@ -1,7 +1,7 @@
-# 02 - Elite Habits (Advanced Discipline Tracker)
+# 02 - Elite Habits
 Elite Habits est un tableau de bord de haute performance conçu pour suivre la constance hebdomadaire. Ce projet marque le passage de la gestion de listes simples à la manipulation de structures de données multidimensionnelles.
 
-## 🚀 Évolution Technique (Le "Level Up")
+## 🚀 Évolution Technique
 Ce projet pousse les concepts du Projet 01 plus loin en introduisant :
 
 - **Complex State Mapping** : Contrairement au Projet 01 (état binaire), ici chaque entité possède un sous-état de 7 jours. Gestion fine de l'immuabilité lors de la mise à jour d'un index précis dans un tableau imbriqué.
