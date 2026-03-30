@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { useHabits } from "../contexts/habitContext";
-import type { Habit } from "../types/habit";
+import { useHabits } from "../../contexts/habitContext";
+import type { Habit } from "../../types/habit";
 import HabitDayItem from "./HabitDayItem";
 import HabitProgress from "./HabitProgress";
-import useInput from "../hooks/useInput";
+import useInput from "../../hooks/useInput";
 
 interface Props {
   habit: Habit;

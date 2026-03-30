@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { useHabits } from "../contexts/habitContext";
+import { useHabits } from "../../contexts/habitContext";
 
 interface Props {
   id: string;
