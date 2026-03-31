@@ -1,12 +1,20 @@
-function App() {
+import AddHabitForm from "./components/Habit/AddHabitForm";
+import HabitList from "./components/Habit/HabitList";
+import StateHeader from "./components/StateHeader";
+import HabitProvider from "./contexts/habitContext";
 
+function App() {
   return (
-    <>
-      <h1 className="text-3xl text-blue-500 bg-red-200">
-        02 - Elite Habits
-      </h1>
-    </>
-  )
+    <HabitProvider>
+      <main className="min-h-screen bg-slate-50 py-10">
+        <div className="max-w-2xl mx-auto">
+          <StateHeader />
+          <AddHabitForm />
+          <HabitList />
+        </div>
+      </main>
+    </HabitProvider>
+  );
 }
 
-export default App
+export default App;
