@@ -1,7 +1,7 @@
 export interface Habit {
   id: string;
   name: string;
-  completedDay: boolean[]; // [Lun, Mar, Mer, Jeu, Ven, Sam, Dim]
+  completedDays: boolean[]; // [Lun, Mar, Mer, Jeu, Ven, Sam, Dim]
   createdAt: number;
 }
 

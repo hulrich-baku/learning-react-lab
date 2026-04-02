@@ -11,7 +11,10 @@ const HabitDayItem = ({ id, isCompleted, dayIndex }: Props) => {
   const { toggleDay } = useHabits();
   return (
     <button
-      onClick={() => toggleDay(id, dayIndex)}
+      onClick={() => {
+        console.log(`L'id est : ${id} et l'index du jour : ${dayIndex}`)
+        toggleDay(id, dayIndex)
+      }}
       className={`w-8 h-8 rounded-md border-2 
             ${
               isCompleted
@@ -19,7 +22,7 @@ const HabitDayItem = ({ id, isCompleted, dayIndex }: Props) => {
                 : "bg-transparent border-gray-200 hover:bg-gray-400"
             }`}
     >
-      {isCompleted && <Check className="w-4 h-4" />}
+      {isCompleted ? <Check className="w-6 h-6" /> : ""}
     </button>
   );
 };

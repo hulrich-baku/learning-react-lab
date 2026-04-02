@@ -12,7 +12,7 @@ const HabitList = () => {
     );
 
   return (
-    <div className="flex flex-col gap-4 mt-6">
+    <div className="flex flex-col gap-4">
       {habits.map((habit) => (
         <HabitItem habit={habit} key={habit.id} />
       ))}

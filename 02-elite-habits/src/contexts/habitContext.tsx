@@ -23,7 +23,7 @@ export default function HabitProvider({
     const newHabit: Habit = {
       id: crypto.randomUUID(),
       name: habitName,
-      completedDay: new Array(7).fill(false),
+      completedDays: new Array(7).fill(false),
       createdAt: Date.now(),
     };
     setHabits((prevHabits) => [newHabit, ...prevHabits]);
@@ -47,9 +47,9 @@ export default function HabitProvider({
     setHabits((prevHabit) =>
       prevHabit.map((habit) => {
         if (habit.id === habitID) {
-          const newDays = habit.completedDay;
+          const newDays = [...habit.completedDays];
           newDays[dayIndex] = !newDays[dayIndex];
-          return { ...habit, completedDay: newDays };
+          return { ...habit, completedDays: newDays };
         }
         return habit;
       }),
@@ -59,7 +59,7 @@ export default function HabitProvider({
   // Calcul de progression journalier en %
   const todayIndex = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1; // ajustement de lundi = 0
   const completedToday = habits.filter(
-    (h) => h.completedDay[todayIndex],
+    (h) => h.completedDays[todayIndex],
   ).length;
   const todayProgress =
     habits.length > 0 ? (completedToday / habits.length) * 100 : 0;

@@ -6,8 +6,12 @@ const useInput = (initialValue: string = '') => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   }
+
+  const clear = () => {
+    setValue('');
+  }
   
-  return { value, onChange, setValue };
+  return { value, onChange, clear };
 }
 
 export default useInput;
