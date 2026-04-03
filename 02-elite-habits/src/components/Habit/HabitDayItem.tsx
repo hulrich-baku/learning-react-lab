@@ -3,27 +3,65 @@ import { useHabits } from "../../contexts/habitContext";
 
 interface Props {
   id: string;
-  isCompleted: boolean;
-  dayIndex: number;
+  completedDays: boolean[];
 }
 
-const HabitDayItem = ({ id, isCompleted, dayIndex }: Props) => {
-  const { toggleDay } = useHabits();
+const DAYS = [
+  "Lundi",
+  "Mardi",
+  "Mercredi",
+  "Jeudi",
+  "Vendredi",
+  "Samedi",
+  "Dimache",
+];
+
+const HabitDayItem = ({ id, completedDays }: Props) => {
+  const { toggleDay, todayIndex } = useHabits();
   return (
-    <button
-      onClick={() => {
-        console.log(`L'id est : ${id} et l'index du jour : ${dayIndex}`)
-        toggleDay(id, dayIndex)
-      }}
-      className={`w-8 h-8 rounded-md border-2 
-            ${
-              isCompleted
-                ? "bg-green-500 border-green-600 shadow-sm"
-                : "bg-transparent border-gray-200 hover:bg-gray-400"
-            }`}
-    >
-      {isCompleted ? <Check className="w-6 h-6" /> : ""}
-    </button>
+    <div className="flex flex-col mt-1">
+            {/* Tablette-PC */}
+            <div className="flex justify-between">
+              {DAYS.map((day, index) => (
+                <span
+                  key={day}
+                  className={`hidden md:inline ${todayIndex === index ? "font-semibold text-cyan-500" : "font-light"} w-7 text-center uppercase`}
+                >
+                  {day.slice(0, 3)}
+                </span>
+              ))}
+            </div>
+            {/* Mobile */}
+            <div className="flex justify-between">
+              {DAYS.map((day, index) => (
+                <span
+                  key={day}
+                  className={`inline md:hidden ${todayIndex === index ? "font-semibold text-cyan-500" : "font-light"} w-7 text-center uppercase`}
+                >
+                  {day.slice(0, 1)}
+                </span>
+              ))}
+            </div>
+            <div className="flex justify-between">
+              {completedDays.map((isCompleted, index) => (
+                <button
+                  key={`${id}-${index}`}
+                  onClick={() => {
+                    toggleDay(id, index);
+                  }}
+                  className={`w-6 h-6 rounded-full border
+                  ${todayIndex === index ? "bg-cyan-500" : ""}
+                  ${
+                    isCompleted
+                      ? "bg-green-500 border-slate-600 shadow-sm"
+                      : "bg-transparent border-2 border-gray-200 hover:bg-gray-200"
+                  }`}
+                >
+                  {isCompleted && <Check className="w-6 h-6 text-white" />}
+                </button>
+              ))}
+            </div>
+          </div>
   );
 };
 

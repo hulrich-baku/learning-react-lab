@@ -1,4 +1,3 @@
-import { Plus } from "lucide-react";
 import { useHabits } from "../../contexts/habitContext";
 import useInput from "../../hooks/useInput";
 
@@ -16,18 +15,19 @@ const AddHabitForm = () => {
         type="text"
         {...inputHabit}
         placeholder="Nouvelle habitue (ex: Lecture, Sport...)"
-        className="flex-1 border px-2 rounded-lg border-slate-500"
+        className="flex-1 border px-2 rounded-lg border-slate-500 focus:outline-none focus:border-cyan-700 focus:ring-1"
       />
       <button
         onClick={(e) => {
           e.preventDefault();
-          handleSave();
-          clear();
+          if (inputHabit.value) {
+            handleSave();
+            clear();
+          }
         }}
-        className="flex gap-1 rounded-lg bg-transparent md:bg-green-400 border-0 md:border md-border-slate-500 p-0 md:px-3 md:py-2"
+        className="rounded-lg bg-cyan-500 border md-border-slate-500 px-2 py-1 text-white"
       >
-        <Plus size={25} className="md:hidden text-green-400" />
-        <span className="hidden md:inline">Ajouter</span>
+        Ajouter
       </button>
     </form>
   );

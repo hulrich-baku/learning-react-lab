@@ -6,7 +6,7 @@ import HabitProvider from "./contexts/habitContext";
 function App() {
   return (
     <HabitProvider>
-      <main className="min-h-screen bg-slate-50 py-8">
+      <main className="min-h-screen bg-slate-50 py-5">
         <div className="max-w-2xl mx-auto">
           <StateHeader />
           <AddHabitForm />

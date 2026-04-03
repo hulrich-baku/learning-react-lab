@@ -73,6 +73,7 @@ export default function HabitProvider({
         deleteHabit,
         toggleDay,
         todayProgress,
+        todayIndex
       }}
     >
       {children}

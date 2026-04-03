@@ -12,4 +12,5 @@ export interface HabitContextType {
   deleteHabit: (habitID: string) => void;
   toggleDay: (habitID: string, dayIndex: number) => void;
   todayProgress: number;
+  todayIndex: number;
 }
