@@ -23,8 +23,8 @@ Ce projet pousse les concepts du [Projet 01](../01-todo-app-basics/) plus loin e
 ## ⚡ Installation
 Pour clonner uniquement ce projet :
 ```bash
-npx degit hulrich-baku/learning-react-lab 02-elite-habits
-cd 02-elite-habits
+npx degit hulrich-baku/learning-react-lab/02-elite-habits elite-habits
+cd elite-habits
 npm install
 npm run dev
 ```

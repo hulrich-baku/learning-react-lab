@@ -18,8 +18,8 @@ Ce projet est une immersion dans les fondamentaux de React, mettant l'accent sur
 ## ⚡ Installation
 Pour clonner uniquement ce projet :
 ```bash
-npx degit hulrich-baku/learning-react-lab 01-todo-app-basics
-cd 02-elite-habits
+npx degit hulrich-baku/learning-react-lab/01-todo-app-basics todo-app-basics
+cd todo-app-basics
 npm install
 npm run dev
 ```
