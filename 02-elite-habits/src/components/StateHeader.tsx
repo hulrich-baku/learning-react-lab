@@ -17,13 +17,15 @@ const StateHeader = () => {
         <span>{pourcentage}%</span>
       </div>
 
-      {/*La barre de progression globale*/}
+      {/* La barre de progression globale */}
       <div className="w-full border h-2 rounded-full bg-slate-100 border border-slate-400">
         <div
           className="h-full bg-cyan-500 rounded-full transition-all duration-1000 ease-in-out"
           style={{ width: `${pourcentage}%` }}
         ></div>
       </div>
+
+      {/* Message d'encouragement */}
       <p className="mt-3 text-xs italic">
         {pourcentage === 100
           ? "Félicitatipon! Journée poarfaite. 🔥"

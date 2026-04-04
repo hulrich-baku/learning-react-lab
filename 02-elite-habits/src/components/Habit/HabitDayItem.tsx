@@ -42,6 +42,8 @@ const HabitDayItem = ({ id, completedDays }: Props) => {
                 </span>
               ))}
             </div>
+
+            {/** Case à cocher pour les jours */}
             <div className="flex justify-between">
               {completedDays.map((isCompleted, index) => (
                 <button

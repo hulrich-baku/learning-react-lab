@@ -29,7 +29,7 @@ const HabitItem = ({ habit }: Props) => {
 
   return (
     <div className="p-3 border border-cyan-700 rounded-lg mx-4 shadow-lg shadow-gray-200">
-      {/** Le titre et la modification */}
+      {/** Le titre et l'input de modification */}
       <div className="flex justify-between gap-2">
         {isEdtiting ? (
           <input
@@ -60,7 +60,7 @@ const HabitItem = ({ habit }: Props) => {
       {/** Les jours */}
       <HabitDayItem id={habit.id} completedDays={habit.completedDays} />
 
-      {/** Les 2 boutons en bas */}
+      {/** Les 2 boutons en bas pour Modifier et Supprimer */}
       <div className="flex justify-between mt-4">
         <div>
           <button
