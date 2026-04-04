@@ -1,4 +1,4 @@
-import { useTodos } from "../context/TodoContext";
+import { useTodos } from "../../context/TodoContext";
 
 const TodoFilter = () => {
   const { setFilter, filter } = useTodos();

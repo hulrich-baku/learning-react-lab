@@ -1,9 +1,9 @@
-import { useTodos } from "../context/TodoContext";
+import { useTodos } from "../../context/TodoContext";
 import TodoItem from "./TodoItem";
 
 const TodoList = () => {
   const todoContext = useTodos();
-  
+
   return (
     <div className="mx-4">
       {todoContext.todos.map((todo) => (

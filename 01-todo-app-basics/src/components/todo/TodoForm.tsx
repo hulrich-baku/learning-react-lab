@@ -1,5 +1,5 @@
-import { useTodos } from "../context/TodoContext";
-import useInput from "../hooks/useInput";
+import { useTodos } from "../../context/TodoContext";
+import useInput from "../../hooks/useInput";
 
 const TodoForm = () => {
   const inputTodo = useInput("");
@@ -15,8 +15,9 @@ const TodoForm = () => {
       <div>
         <button
           className="bg-gray-400 p-2 rounded-xl text-white border-blue-500 border"
-          onClick={() => inputTodo.reset()}>
-            Reset
+          onClick={() => inputTodo.reset()}
+        >
+          Reset
         </button>
       </div>
       <div className="relative w-80 mx-auto">
@@ -43,10 +44,11 @@ const TodoForm = () => {
         </label>
       </div>
       <div className="">
-        <button 
+        <button
           className="bg-blue-400 p-2 rounded-xl text-white border border-gray-500"
-          onClick={submission}>
-            Ajouter
+          onClick={submission}
+        >
+          Ajouter
         </button>
       </div>
     </div>

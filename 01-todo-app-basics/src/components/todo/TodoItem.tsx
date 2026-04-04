@@ -1,5 +1,5 @@
-import type { Todo } from "../types/todo";
-import { useTodos } from "../context/TodoContext";
+import type { Todo } from "../../types/todo";
+import { useTodos } from "../../context/TodoContext";
 import { useEffect, useRef, useState } from "react";
 
 interface TodoItemProps {
