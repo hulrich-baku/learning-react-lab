@@ -8,7 +8,7 @@ const StateHeader = () => {
     <div className="p-4 rounded-0 md:rounded-2xl shadow-lg mb-1 border-0 md:border md:border-slate-500">
       <div className="flex justify-between items-end mb-4">
         <div>
-          <h1 className="text-2xl font-bold text-cyan-600">Ma discipline</h1>
+          <h1 className="text-2xl font-bold text-cyan-600">Ma discipline <span className="text-slate-500">HMB</span></h1>
           <p className="text-sm">
             {habits.length} habitude{habits.length > 1 ? "s" : ""} suivie
             {habits.length > 1 ? "s" : ""}
