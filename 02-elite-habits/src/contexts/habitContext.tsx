@@ -1,9 +1,14 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { Habit, HabitContextType } from "../types/habit";
 
 const HabitContext = createContext<HabitContextType | undefined>(undefined);
 
 const habitKey: string = "elite-habits";
+
+const getTodayIndex = () => {
+  const day = new Date().getDay();
+  return day === 0 ? 6 : day - 1; // ajustement de lundi = 0
+};
 
 export default function HabitProvider({
   children,
@@ -11,12 +16,31 @@ export default function HabitProvider({
   children: React.ReactNode;
 }) {
   const [habits, setHabits] = useState<Habit[]>(() => {
-    const saved = localStorage.getItem(habitKey);
-    return saved ? JSON.parse(saved) : [];
+    // Vérification de sécurité pour le SSR (Vercel/Next)
+    if (typeof window === "undefined") return [];
+
+    try {
+      // 2. On essaie de lire (Sécurité Navigation Privée/Chrome)
+      const saved = localStorage.getItem(habitKey);
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      // 3. En cas de bug, on renvoie un tableau vide au lieu de crasher
+      return [];
+    }
   });
 
   useEffect(() => {
     localStorage.setItem(habitKey, JSON.stringify(habits));
+  }, [habits]);
+
+  // Calcul de progression journalier en %
+  const { todayIndex, todayProgress } = useMemo(() => {
+    const index = getTodayIndex();
+    const completedToday = habits.filter((h) => h.completedDays[index]).length;
+    const progress =
+      habits.length > 0 ? (completedToday / habits.length) * 100 : 0;
+
+    return { todayIndex: index, todayProgress: Math.round(progress) };
   }, [habits]);
 
   const addHabit = (habitName: string) => {
@@ -56,14 +80,6 @@ export default function HabitProvider({
     );
   };
 
-  // Calcul de progression journalier en %
-  const todayIndex = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1; // ajustement de lundi = 0
-  const completedToday = habits.filter(
-    (h) => h.completedDays[todayIndex],
-  ).length;
-  const todayProgress =
-    habits.length > 0 ? (completedToday / habits.length) * 100 : 0;
-
   return (
     <HabitContext.Provider
       value={{
@@ -73,7 +89,7 @@ export default function HabitProvider({
         deleteHabit,
         toggleDay,
         todayProgress,
-        todayIndex
+        todayIndex,
       }}
     >
       {children}
