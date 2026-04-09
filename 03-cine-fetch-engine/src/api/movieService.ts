@@ -11,7 +11,7 @@ export const microService = {
   },
 
   // Chercher des films par mot clé
-  searchMovie: async (query: string, page = 1): Promise<TMDBResponse> => {
+  searchMovies: async (query: string, page = 1): Promise<TMDBResponse> => {
     const response = await api.get<TMDBResponse>("search/movie", {
       params: { query, page },
     });

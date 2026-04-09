@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Movie } from "../types/movie";
 import { microService } from "../api/movieService";
 
-export const useMovies = () => {
+export const useMovies = (searchQuery: string = "") => {
   // 1. Les états
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -14,8 +14,14 @@ export const useMovies = () => {
       setLoading(true);
       setError(null);
 
-      const data = await microService.getPopularMovies();
-      setMovies(data.results);
+      if (searchQuery.trim().length > 0) {
+        const data = await microService.searchMovies(searchQuery);
+        setMovies(data.results);
+      } else {
+        const data = await microService.getPopularMovies();
+        setMovies(data.results);
+      }
+
     } catch (error) {
       setError("Impossible de charger les films. Vérifiez votre connexion.");
       console.log(error);
@@ -26,7 +32,7 @@ export const useMovies = () => {
 
   useEffect(() => {
     fetchMovies();
-  }, []);
+  }, [searchQuery]);
 
   return { movies, loading, error, refresh: fetchMovies };
 };
