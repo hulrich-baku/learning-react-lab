@@ -2,25 +2,35 @@ import { useEffect, useState } from "react";
 import { SearchBar } from "./components/SearchBar";
 import { useMovies } from "./hooks/useMovies";
 import { getMoviePoster } from "./utils/movieHelpers";
+import { MovieSkeleton } from "./components/movies/MovieSkeleton";
 
 function App() {
-  const [serachTerm, setSearchTerm] = useState(''); // ce que l'utisateur tape
-  const [debouncedTerm, setDebouncedTerm] = useState("") // ce qui déclenche l'API (retardé)
+  const [serachTerm, setSearchTerm] = useState(""); // ce que l'utisateur tape
+  const [debouncedTerm, setDebouncedTerm] = useState(""); // ce qui déclenche l'API (retardé)
 
   // Debounce
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedTerm(serachTerm);
-    }, 1000) // on attend après une seconde de pause
+    }, 1000); // on attend après une seconde de pause
 
     return () => clearTimeout(timer);
+  }, [serachTerm]);
 
-  }, [serachTerm])
-  
   const { movies, loading, error } = useMovies(debouncedTerm);
 
-  if (loading)
-    return <div className="text-white text-center p-20">Chargement...</div>;
+  if (loading) {
+    return (
+      <main className="p-8 bg-black min-h-sreen">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          {/** tableau des 10 élements pour afficher le squelette */}
+          {Array.from({ length: 10 }).map((_, index) => (
+            <MovieSkeleton key={index} />
+          ))}
+        </div>
+      </main>
+    );
+  }
   if (error)
     return <div className="text-red-500 text-center p-20">{error}</div>;
 
@@ -29,7 +39,7 @@ function App() {
       <h1 className="text-white mb-6 text-3xl font-bold">Cine Fetch Engine</h1>
 
       {/**La bare de recherche */}
-      <SearchBar value={serachTerm} onChange={setSearchTerm}  ></SearchBar>
+      <SearchBar value={serachTerm} onChange={setSearchTerm}></SearchBar>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {movies.map((movie) => (
