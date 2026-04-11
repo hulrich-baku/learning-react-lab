@@ -21,7 +21,7 @@ function App() {
   const {toggleTheme, theme} = useTheme();
 
   return (
-    <main className="p-8 bg-slate-100 dark:bg-black min-h-screen transition-colors duration-1000">
+    <main className="p-8 bg-slate-100 dark:bg-black min-h-screen transition-colors duration-500">
       {/* L'En-tête */}
       <Header value={serachTerm} onChange={setSearchTerm} theme={theme} toggleTheme={toggleTheme} />
 
