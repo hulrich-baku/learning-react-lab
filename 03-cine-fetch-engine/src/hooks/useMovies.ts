@@ -6,7 +6,7 @@ export const useMovies = (searchQuery: string = "") => {
   // 1. Les états
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<String | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // 2. La fonction de récupération
   const fetchMovies = async () => {
