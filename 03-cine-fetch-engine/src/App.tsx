@@ -17,7 +17,7 @@ function App() {
     return () => clearTimeout(timer);
   }, [serachTerm]);
 
-  const { movies, loading, error, setPage, hasMore } = useMovies(debouncedTerm);
+  const { movies, loading, error, setPage, hasMore, refresh } = useMovies(debouncedTerm);
   const { toggleTheme, theme } = useTheme();
 
   return (
@@ -31,7 +31,7 @@ function App() {
       />
 
       {/* Grid qui gère l'affichage des films */}
-      <MovieGrid movies={movies} loading={loading} error={error} />
+      <MovieGrid movies={movies} loading={loading} error={error} refresh={refresh} />
 
       {/* Bouton de page suivante */}
       {hasMore && !loading && movies.length > 0 && (
