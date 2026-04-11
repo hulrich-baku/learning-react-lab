@@ -8,7 +8,7 @@ interface MovieCardProps {
 export const MovieCard = ({movie} : MovieCardProps) => {
   return (
     <div className="group cursor-pointer">
-      <div className="relative aspect-[2/3] overflow-hidden rounded-lg text-white border">
+      <div className="relative aspect-[2/3] overflow-hidden rounded-lg text-white border border-slate-900 dark:border-white">
         <img
           src={getMoviePoster(movie.poster_path)}
           alt={movie.title}
@@ -19,10 +19,10 @@ export const MovieCard = ({movie} : MovieCardProps) => {
           <p className="text-xs italic line-clamp-3">{movie.overview}</p>
         </div>
       </div>
-      <h2 className="font-semibold truncate mt-2 text-sm text-white">
+      <h2 className="font-semibold truncate mt-2 text-sm text-slate-800 dark:text-white">
         {movie.title}
       </h2>
-      <p className="text-xs font-bold text-cyan-400">
+      <p className="text-xs font-bold text-cyan-700 dark:text-cyan-500">
         ⭐ {movie.vote_average.toFixed(1)}
       </p>
     </div>

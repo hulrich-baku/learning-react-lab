@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useMovies } from "./hooks/useMovies";
 import { Header } from "./components/layout/Header";
 import { MovieGrid } from "./components/movies/MovieGrid";
+import { useTheme } from "./hooks/useTheme";
 
 function App() {
   const [serachTerm, setSearchTerm] = useState(""); // ce que l'utisateur tape
@@ -17,11 +18,12 @@ function App() {
   }, [serachTerm]);
 
   const { movies, loading, error } = useMovies(debouncedTerm);
+  const {toggleTheme, theme} = useTheme();
 
   return (
-    <main className="p-8 bg-black min-h-screen">
+    <main className="p-8 bg-slate-100 dark:bg-black min-h-screen transition-colors duration-1000">
       {/* L'En-tête */}
-      <Header value={serachTerm} onChange={setSearchTerm} />
+      <Header value={serachTerm} onChange={setSearchTerm} theme={theme} toggleTheme={toggleTheme} />
 
       {/* Grid qui gère l'affichage des films */}
       <MovieGrid movies={movies} loading={loading} error={error} />
