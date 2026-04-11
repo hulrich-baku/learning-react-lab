@@ -6,7 +6,7 @@ Ce dépôt regroupe mes projets d'apprentissage progressifs pour maîtriser l'é
 |:-----------------:|-------------------------|:------------:|     
 | [01 - Todo App Basics](./01-todo-app-basics) | Les fondamentaux : CRUD, State, Hooks et Context API | ✅Terminé |
 | [02 - Elite Habits](./02-elite-habits) | Logique métier complexe : États imbriqués, calculs dérivés et UI responsive    | ✅Terminé |
-| [03 - Cine Fetch Engine](./03-cine-fetch-engine) | Communication Asynchrone : Protocole HTTP (REST API), Sécurisation des secrets (.env) et Lifecycle Management (Loading/Success/Error) | 🟡En cours  |
+| [03 - Cine Fetch Engine](./03-cine-fetch-engine) | Communication Asynchrone : Protocole HTTP (REST API), Sécurisation des secrets (.env) et Lifecycle Management (Loading/Success/Error) | ✅Terminé  |
 
 ## 🛠️ Stack Technique globale
 - **Core** : React 19 (Hooks, Context API).
@@ -22,16 +22,12 @@ Pour tester l'un des projets de ce laboratoire :
 ```bash
 git clone https://github.com/hulrich-baku/react-learning-lab.git
 ```
-2. Entrer dans le dossier du projet souhaité :
+1. Entrer dans le dossier du projet souhaité, par exemple pour accéder au [Projet 03](./03-cine-fetch-engine/) exécutez la commande :
 ```bash
-cd 02-elite-habits
+cd 03-cine-fetch-engine
 ```
-ou
-```bash
-cd 01-todo-app-basics
-```
-3. Installer les dépendances et lancer le serveur :
 
+1. Installer les dépendances et lancer le serveur :
 ```bash
 npm install
 npm run dev
