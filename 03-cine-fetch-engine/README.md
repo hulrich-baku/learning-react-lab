@@ -33,6 +33,7 @@ npx degit hulrich-baku/learning-react-lab/03-cine-fetch-engine cine-fetch-engine
 # .env.example
 VITE_TMDB_API_KEY=ajoute_ta_cle_ici
 VITE_TMDB_BASE_URL=https://api.themoviedb.org/3
+VITE_TMDB_IMAGE_BASE_URL=https://image.tmdb.org/t/p
 ```
 
 3. Installer les dépendances et lancer le serveur
