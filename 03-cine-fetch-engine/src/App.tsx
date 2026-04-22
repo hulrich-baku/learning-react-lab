@@ -11,7 +11,6 @@ function App() {
   const [debouncedTerm, setDebouncedTerm] = useState(""); // ce qui déclenche l'API (retardé)
 
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-  const closeModal = () => setSelectedMovie(null);
 
   // Debounce
   useEffect(() => {

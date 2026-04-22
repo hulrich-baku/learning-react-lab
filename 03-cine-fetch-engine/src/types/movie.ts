@@ -15,7 +15,3 @@ export interface TMDBResponse {
   total_pages: number;
   total_results: number;
 }
-interface MovieModalProps {
-  movie: Movie;
-  onClose: () => void;
-}
