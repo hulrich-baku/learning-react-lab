@@ -27,3 +27,14 @@ Ce projet marque une rupture majeure avec le [Projet 03](../03-cine-fetch-engine
 1. Cloner uniquement ce projet :
 ```bash
 npx degit hulrich-baku/learning-react-lab/04-synthetix-live synthetix-live
+```
+
+2. Installer les dépendances :
+```bash
+npm install
+```
+
+3. Lancer le terminal de trading :
+```Bash
+npm run dev
+```
