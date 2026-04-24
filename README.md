@@ -7,6 +7,7 @@ Ce dépôt regroupe mes projets d'apprentissage progressifs pour maîtriser l'é
 | [01 - Todo App Basics](./01-todo-app-basics) | Les fondamentaux : CRUD, State, Hooks et Context API | ✅Terminé |
 | [02 - Elite Habits](./02-elite-habits) | Logique métier complexe : États imbriqués, calculs dérivés et UI responsive    | ✅Terminé |
 | [03 - Cine Fetch Engine](./03-cine-fetch-engine) | Communication Asynchrone : Protocole HTTP (REST API), Sécurisation des secrets (.env) et Lifecycle Management (Loading/Success/Error) | ✅Terminé  |
+| [04 - Synthetix Live](./04-synthetix-live) | Flux Temps Réel : Protocole WebSocket (Full-Duplex), Stream Processing, Calcul d'indicateurs financiers et Charting dynamique | 🏗️ En cours |
 
 ## 🛠️ Stack Technique globale
 - **Core** : React 19 (Hooks, Context API).

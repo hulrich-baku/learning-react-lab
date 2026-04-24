@@ -3,7 +3,7 @@
 ## 🚀 Présentation du Projet
 Cine Fetch Engine est un explorateur de films dynamique utilisant l'API The Movie Database (TMDB). Ce projet marque une transition critique vers le développement "Data-Driven" où l'application consomme des données réelles et changeantes.
 
-## 🔧 Evolution technique:
+## 🔧 Evolution technique
 Ce projet pousse les concepts du [Projet 02](../02-elite-habits/) plus loin en introduisant :
 - **Source de données externe** : Passage d'un état local (LocalStorage) à une consommation de données distantes via API REST.
 - **Gestion d'état asynchrone** : Maîtrise des délais réseau et des états de transition (Loading/Error) absents dans les projets statiques.
