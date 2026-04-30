@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import {
   type CandlestickData,
   type IChartApi,
@@ -13,10 +13,15 @@ import { type Timeframe, TIMEFRAME_MAP } from "../../types/trading";
 
 interface TradingChartPropos {
   symbol: string;
+  timeframe: Timeframe;
+  changeTimeframe: (tf: Timeframe) => void;
 }
 
-const TradingChart = ({ symbol }: TradingChartPropos) => {
-  const [timeframe, setTimeframe] = useState<Timeframe>("1m");
+const TradingChart = ({
+  symbol,
+  timeframe,
+  changeTimeframe,
+}: TradingChartPropos) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const seriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
   const chartRef = useRef<IChartApi | null>(null);
@@ -116,22 +121,23 @@ const TradingChart = ({ symbol }: TradingChartPropos) => {
   return (
     <div className="w-full max-w-6xl mx-auto p-4">
       <div className="bg-[#0b0e11] rounded-2xl border border-slate-800 p-2 shadow-2xl overflow-hidden">
-        
         {/* Barre d'outils du graphique */}
         <div className="flex justify-between items-center mb-4 px-4 pt-2">
           <div className="flex items-center gap-4">
-            <span className="text-cyan-400 font-bold tracking-wider">{symbol}</span>
-            
+            <span className="text-cyan-400 font-bold tracking-wider">
+              {symbol}
+            </span>
+
             {/* Sélecteur de Timeframes */}
             <div className="flex bg-slate-900 rounded-lg p-1 border border-slate-700">
               {(Object.keys(TIMEFRAME_MAP) as Timeframe[]).map((tf) => (
                 <button
                   key={tf}
-                  onClick={() => setTimeframe(tf)}
+                  onClick={() => changeTimeframe(tf)}
                   className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${
-                    timeframe === tf 
-                    ? "bg-cyan-600 text-white shadow-lg" 
-                    : "text-slate-400 hover:text-white hover:bg-slate-800"
+                    timeframe === tf
+                      ? "bg-cyan-600 text-white shadow-lg"
+                      : "text-slate-400 hover:text-white hover:bg-slate-800"
                   }`}
                 >
                   {tf}
