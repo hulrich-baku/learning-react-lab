@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
   type CandlestickData,
   type IChartApi,
@@ -9,20 +9,23 @@ import {
   createChart,
 } from "lightweight-charts";
 import { useTradingSocket } from "../../hooks/useTradingSocket";
+import { type Timeframe, TIMEFRAME_MAP } from "../../types/trading";
 
 interface TradingChartPropos {
   symbol: string;
 }
 
 const TradingChart = ({ symbol }: TradingChartPropos) => {
+  const [timeframe, setTimeframe] = useState<Timeframe>("1m");
   const containerRef = useRef<HTMLDivElement>(null);
   const seriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const currentCandleRef = useRef<CandlestickData<Time> | null>(null);
 
-  const { lastPrice, history } = useTradingSocket(symbol);
+  // Le hook se relance automatiquement quand 'symbol' ou 'timeframe' change
+  const { lastPrice, history } = useTradingSocket(symbol, timeframe);
 
-  // 1. Initialisation unique du graphique
+  // 1. Initialisation et reset du graphique lors du changement de symbole/timeframe
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -38,10 +41,9 @@ const TradingChart = ({ symbol }: TradingChartPropos) => {
       timeScale: {
         timeVisible: true,
         secondsVisible: false,
-        fixLeftEdge: true, // Aide à stabiliser l'historique
       },
       width: containerRef.current.clientWidth,
-      height: 400,
+      height: 450,
     });
 
     const candleSeries = chart.addSeries(CandlestickSeries, {
@@ -55,12 +57,6 @@ const TradingChart = ({ symbol }: TradingChartPropos) => {
     seriesRef.current = candleSeries;
     chartRef.current = chart;
 
-    // SI l'historique est déjà chargé lors du montage (ex: changement de symbole)
-    if (history && history.length > 0) {
-      candleSeries.setData(history);
-      currentCandleRef.current = history[history.length - 1];
-    }
-
     const handleResize = () => {
       if (containerRef.current) {
         chart.applyOptions({ width: containerRef.current.clientWidth });
@@ -73,25 +69,25 @@ const TradingChart = ({ symbol }: TradingChartPropos) => {
       window.removeEventListener("resize", handleResize);
       chart.remove();
     };
-  }, [symbol]);
+  }, [symbol, timeframe]); // On recrée le chart proprement au changement d'unité
 
-  // 2. Injection de l'historique quand il arrive via le WebSocket
+  // 2. Injection de l'historique
   useEffect(() => {
     if (history && history.length > 0 && seriesRef.current) {
       seriesRef.current.setData(history);
       currentCandleRef.current = history[history.length - 1];
-
-      // Ajuste la vue pour voir tout l'historique
       chartRef.current?.timeScale().fitContent();
     }
   }, [history]);
 
-  // 3. Transformation : Tick -> Candle (OHLC)
+  // 3. Transformation : Tick -> Candle avec granularité dynamique
   useEffect(() => {
     if (!lastPrice || !seriesRef.current) return;
 
     const now = Math.floor(Date.now() / 1000);
-    const candleTime = (now - (now % 60)) as Time;
+    // Calcul de l'ouverture de la bougie basé sur le timeframe actuel
+    const seconds = TIMEFRAME_MAP[timeframe];
+    const candleTime = (now - (now % seconds)) as Time;
 
     const currentCandle = currentCandleRef.current;
 
@@ -115,24 +111,40 @@ const TradingChart = ({ symbol }: TradingChartPropos) => {
       currentCandleRef.current = updatedCandle;
       seriesRef.current.update(updatedCandle);
     }
-  }, [lastPrice]);
+  }, [lastPrice, timeframe]);
 
   return (
     <div className="w-full max-w-6xl mx-auto p-4">
       <div className="bg-[#0b0e11] rounded-2xl border border-slate-800 p-2 shadow-2xl overflow-hidden">
+        
+        {/* Barre d'outils du graphique */}
         <div className="flex justify-between items-center mb-4 px-4 pt-2">
-          <div className="flex items-center gap-3">
-            <span className="text-cyan-400 font-bold tracking-wider">
-              {symbol}
-            </span>
-            <span className="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">
-              1m
-            </span>
+          <div className="flex items-center gap-4">
+            <span className="text-cyan-400 font-bold tracking-wider">{symbol}</span>
+            
+            {/* Sélecteur de Timeframes */}
+            <div className="flex bg-slate-900 rounded-lg p-1 border border-slate-700">
+              {(Object.keys(TIMEFRAME_MAP) as Timeframe[]).map((tf) => (
+                <button
+                  key={tf}
+                  onClick={() => setTimeframe(tf)}
+                  className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${
+                    timeframe === tf 
+                    ? "bg-cyan-600 text-white shadow-lg" 
+                    : "text-slate-400 hover:text-white hover:bg-slate-800"
+                  }`}
+                >
+                  {tf}
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="text-2xl font-mono text-white tabular-nums">
+
+          <div className="hidden md:inline text-2xl font-mono text-white tabular-nums">
             {lastPrice?.toFixed(2) ?? "---"}
           </div>
         </div>
+
         <div ref={containerRef} className="w-full" />
       </div>
     </div>

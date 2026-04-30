@@ -1,26 +1,26 @@
 import { useEffect, useState, useRef } from "react";
 import { type CandlestickData, type Time } from "lightweight-charts";
-import { type DerivResponse } from "../types/trading"; // Ajuste le chemin si besoin
+import { TIMEFRAME_MAP, type DerivResponse, type Timeframe } from "../types/trading"; // Ajuste le chemin si besoin
 
 const DERIV_WS_URL = "wss://ws.binaryws.com/websockets/v3?app_id=1089";
 
-export const useTradingSocket = (symbol: string) => {
+export const useTradingSocket = (symbol: string, timeframe: Timeframe) => {
   const [lastPrice, setLastPrice] = useState<number | null>(null);
   const [history, setHistory] = useState<CandlestickData<Time>[]>([]);
   const socketRef = useRef<WebSocket | null>(null);
+
+  const granularity = TIMEFRAME_MAP[timeframe];
 
   useEffect(() => {
     socketRef.current = new WebSocket(DERIV_WS_URL);
 
     socketRef.current.onopen = () => {
-      console.log("🔌 Connecté à Deriv");
-
       const historyReq = {
         ticks_history: symbol,
         adjust_start_time: 1,
         end: "latest",
         count: 100,
-        granularity: 60,
+        granularity,
         style: "candles",
         passthrough: { type: "FETCH_HISTORY" },
       };
@@ -66,7 +66,7 @@ export const useTradingSocket = (symbol: string) => {
     return () => {
       socketRef.current?.close();
     };
-  }, [symbol]);
+  }, [symbol, timeframe]);
 
   return { lastPrice, history };
 };
