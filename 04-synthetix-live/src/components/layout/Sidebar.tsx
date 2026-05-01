@@ -1,10 +1,10 @@
-import { ASSETS_CONFIG } from "../../types/trading";
+import { ASSETS_CONFIG, type Asset } from "../../types/trading";
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
-  selectedSymbol: string;
-  onSelectSymbol: (symbol: string) => void;
+  selectedSymbol: Asset;
+  onSelectSymbol: (symbol: Asset) => void;
 }
 
 const Sidebar = ({ isOpen, onClose, selectedSymbol, onSelectSymbol }: SidebarProps) => {
@@ -40,22 +40,22 @@ const Sidebar = ({ isOpen, onClose, selectedSymbol, onSelectSymbol }: SidebarPro
             <button
               key={asset.symbol}
               onClick={() => {
-                onSelectSymbol(asset.symbol);
+                onSelectSymbol(asset);
                 onClose();
               }}
               className={`w-full text-left px-4 py-3 border-b border-slate-800/30 transition-all group ${
-                selectedSymbol === asset.symbol
+                selectedSymbol === asset
                   ? "bg-slate-900 border-l-2 border-l-cyan-500"
                   : "hover:bg-slate-900/50"
               }`}
             >
               <div className={`text-[10px] uppercase font-mono mb-0.5 ${
-                  selectedSymbol === asset.symbol ? "text-cyan-500" : "text-slate-500"
+                  selectedSymbol === asset ? "text-cyan-500" : "text-slate-500"
               }`}>
                 {asset.category}
               </div>
               <div className={`text-sm font-bold ${
-                  selectedSymbol === asset.symbol ? "text-white" : "text-slate-400 group-hover:text-slate-200"
+                  selectedSymbol === asset ? "text-white" : "text-slate-400 group-hover:text-slate-200"
               }`}>
                 {asset.label}
               </div>

@@ -2,13 +2,14 @@ import { useEffect, useState, useRef } from "react";
 import { type CandlestickData, type Time } from "lightweight-charts";
 import {
   TIMEFRAME_MAP,
+  type Asset,
   type DerivResponse,
   type Timeframe,
 } from "../types/trading";
 
 const DERIV_WS_URL = "wss://ws.binaryws.com/websockets/v3?app_id=1089";
 
-export const useTradingSocket = (symbol: string, timeframe: Timeframe) => {
+export const useTradingSocket = (symbol: Asset, timeframe: Timeframe) => {
   const [lastPrice, setLastPrice] = useState<number | null>(null);
   const [history, setHistory] = useState<CandlestickData<Time>[]>([]);
   const [connected, setConnected] = useState<boolean>(false);
@@ -34,10 +35,10 @@ export const useTradingSocket = (symbol: string, timeframe: Timeframe) => {
         setConnected(true);
 
         const historyReq = {
-          ticks_history: symbol,
+          ticks_history: symbol.symbol,
           adjust_start_time: 1,
           end: "latest",
-          count: 200,
+          count: 300,
           granularity,
           style: "candles",
           passthrough: { type: "FETCH_HISTORY" },
@@ -55,6 +56,7 @@ export const useTradingSocket = (symbol: string, timeframe: Timeframe) => {
         }
 
         if (data.passthrough?.type === "FETCH_HISTORY" && data.candles) {
+          // console.log("La taille de l'hystorique :",data.candles.length)
           const formatted: CandlestickData<Time>[] = data.candles.map((c) => ({
             time: c.epoch as Time,
             open: typeof c.open === "string" ? parseFloat(c.open) : c.open,
@@ -64,7 +66,7 @@ export const useTradingSocket = (symbol: string, timeframe: Timeframe) => {
           }));
           setHistory(formatted);
 
-          ws.send(JSON.stringify({ ticks: symbol, subscribe: 1 }));
+          ws.send(JSON.stringify({ ticks: symbol.symbol, subscribe: 1 }));
         }
 
         if (data.msg_type === "tick" && data.tick) {

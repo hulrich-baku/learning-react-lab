@@ -1,13 +1,13 @@
 import { useState } from "react";
 import TradingChart from "./components/chart/TradingChart";
 import Header from "./components/layout/Header";
-import Sidebar from "./components/layout/Sidebar"; // Nouveau
+import Sidebar from "./components/layout/Sidebar";
 import { useTradingSocket } from "./hooks/useTradingSocket";
-import { type Timeframe } from "./types/trading";
+import { ASSETS_CONFIG, type Asset, type Timeframe } from "./types/trading";
 
 function App() {
   const [timeframe, setTimeframe] = useState<Timeframe>("1m");
-  const [selectedSymbol, setSelectedSymbol] = useState("R_100");
+  const [selectedSymbol, setSelectedSymbol] = useState<Asset>(ASSETS_CONFIG[0]);
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const { connected } = useTradingSocket(selectedSymbol, timeframe);
 
@@ -29,7 +29,7 @@ function App() {
         <section className="flex-1 flex flex-col bg-black overflow-hidden relative min-w-0">
           <div className={`flex-1 w-full h-full transition-opacity duration-500 ${!connected ? "opacity-50" : "opacity-100"}`}>
             <TradingChart
-              symbol={selectedSymbol}
+              actif={selectedSymbol}
               timeframe={timeframe}
               changeTimeframe={setTimeframe}
             />
