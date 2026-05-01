@@ -26,7 +26,6 @@ export const useTradingSocket = (symbol: string, timeframe: Timeframe) => {
         socketRef.current.close();
       }
 
-      console.log(`🔌 Tentative de connexion pour ${symbol}...`);
       const ws = new WebSocket(DERIV_WS_URL);
       socketRef.current = ws;
 
@@ -38,7 +37,7 @@ export const useTradingSocket = (symbol: string, timeframe: Timeframe) => {
           ticks_history: symbol,
           adjust_start_time: 1,
           end: "latest",
-          count: 100,
+          count: 200,
           granularity,
           style: "candles",
           passthrough: { type: "FETCH_HISTORY" },

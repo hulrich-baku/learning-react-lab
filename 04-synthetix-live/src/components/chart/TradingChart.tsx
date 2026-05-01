@@ -119,8 +119,8 @@ const TradingChart = ({
   }, [lastPrice, timeframe]);
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-4">
-      <div className="bg-[#0b0e11] rounded-2xl border border-slate-800 p-2 shadow-2xl overflow-hidden">
+    <div className="w-full max-w-6xl mx-auto">
+      <div className="bg-[#0b0e11] border border-slate-800 p-2 shadow-2xl overflow-hidden">
         {/* Barre d'outils du graphique */}
         <div className="flex justify-between items-center mb-4 px-4 pt-2">
           <div className="flex items-center gap-4">

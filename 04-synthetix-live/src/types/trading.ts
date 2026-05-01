@@ -62,3 +62,40 @@ export interface DerivResponse {
     code: string;
   };
 }
+
+export interface Asset {
+  label: string;     // Nom affiché (ex: "Vol 100")
+  symbol: string;    // Symbole Deriv (ex: "R_100")
+  category: string;  // Pour grouper (Volatility, Boom/Crash)
+}
+
+export const ASSETS_CONFIG: Asset[] = [
+  // --- VOLATILITY INDICES ---
+  { label: "Volatility 10", symbol: "R_10", category: "Volatility" },
+  { label: "Volatility 25", symbol: "R_25", category: "Volatility" },
+  { label: "Volatility 50", symbol: "R_50", category: "Volatility" },
+  { label: "Volatility 75", symbol: "R_75", category: "Volatility" },
+  { label: "Volatility 100", symbol: "R_100", category: "Volatility" },
+  { label: "Volatility 10 (1s)", symbol: "1HZ10V", category: "Volatility" },
+  { label: "Volatility 100 (1s)", symbol: "1HZ100V", category: "Volatility" },
+
+  // --- CRASH & BOOM ---
+  // { label: "Boom 300", symbol: "BOOM300", category: "Crash Boom Index" },
+  // { label: "Boom 500", symbol: "AVG500", category: "Crash Boom Index" },
+  // { label: "Boom 1000", symbol: "AVG1000", category: "Crash Boom Index" },
+  // { label: "Crash 300", symbol: "CRASH300", category: "Crash Boom Index" },
+  // { label: "Crash 500", symbol: "DDB500", category: "Crash Boom Index" },
+  // { label: "Crash 1000", symbol: "DDB1000", category: "Crash Boom Index" },
+
+  // --- STEP INDICES ---
+  // { label: "Step Index", symbol: "STEP", category: "Step Index" },
+  // { label: "Step 200", symbol: "STEP200", category: "Step Index" },
+  // { label: "Step 500", symbol: "STEP500", category: "Step Index" },
+
+  // --- JUMP INDICES ---
+  { label: "Jump 10", symbol: "JD10", category: "Jump Index" },
+  { label: "Jump 25", symbol: "JD25", category: "Jump Index" },
+  { label: "Jump 50", symbol: "JD50", category: "Jump Index" },
+  { label: "Jump 75", symbol: "JD75", category: "Jump Index" },
+  { label: "Jump 100", symbol: "JD100", category: "Jump Index" }
+];
