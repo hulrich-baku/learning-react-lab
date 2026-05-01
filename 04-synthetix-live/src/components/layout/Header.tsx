@@ -7,10 +7,10 @@ interface HeaderProps {
 
 const Header = ({ isConnected, onMenuClick }: HeaderProps) => {
   return (
-    <header className="border-b border-slate-800 w-full bg-[#0b0e11] px-6 py-3 flex justify-between">
-      <div className="flex gap-1">
-        <MenuIcon size={22} onClick={onMenuClick} className="my-auto md:hidden"/>
-        <h1 className="text-xl font-black tracking-tighter text-white">
+    <header className="border-b border-slate-800 w-full bg-[#0b0e11] px-6 py-4 flex justify-between">
+      <div className="flex gap-2">
+        <MenuIcon size={20} onClick={onMenuClick} className="my-auto md:hidden"/>
+        <h1 className="text-2xl font-black tracking-tighter text-white">
           SYNTHETIX <span className="text-cyan-500">LIVE</span>
         </h1>
       </div>

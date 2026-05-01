@@ -231,7 +231,7 @@ const TradingChart = ({
             <p className="text-cyan-500 font-mono text-xs animate-pulse">SYNCHRONISATION {actif.label}...</p>
           </div>
         ) : null}
-        <div ref={containerRef} className="w-full h-full" />
+        <div ref={containerRef} className="absolute top-0 right-0 left-0 bottom-4" />
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen, onClose, selectedSymbol, onSelectSymbol }: SidebarPro
       <aside
         className={`
           fixed md:relative inset-y-0 left-0 z-50 
-          ${isOpen ? "translate-x-0 w-72" : "-translate-x-full md:translate-x-0 w-64"}
+          ${isOpen ? "translate-x-0 w-72" : "-translate-x-full md:translate-x-0 w-62"}
           border-r border-slate-800 bg-[#0b0e11] 
           flex flex-col overflow-hidden transition-transform duration-300 ease-in-out md:flex
         `}
