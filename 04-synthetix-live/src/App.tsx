@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-function App() {
-  return (
-    <>
-      <h1 className="text-slate-700 text-center p-4">SYNTHETIX LIVE</h1>
-    </>
-  )
-}
-
-export default App
-=======
 import { useState } from "react";
 import TradingChart from "./components/chart/TradingChart";
 import Header from "./components/layout/Header";
@@ -52,4 +41,3 @@ function App() {
 }
 
 export default App;
->>>>>>> 04-synthetix-live

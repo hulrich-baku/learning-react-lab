@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-@import "tailwindcss";
-=======
 @import "tailwindcss";
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -16,4 +13,3 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #0891b2; /* cyan-600 */
 }
->>>>>>> 04-synthetix-live
