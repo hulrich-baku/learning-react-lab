@@ -11,11 +11,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
-<<<<<<< HEAD
-=======
     "lightweight-charts": "^5.2.0",
     "lucide-react": "^1.9.0",
->>>>>>> 04-synthetix-live
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   },
