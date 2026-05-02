@@ -20,7 +20,7 @@ Ce projet marque une rupture majeure avec le [Projet 03](../03-cine-fetch-engine
 ## 🎯 Objectifs d'Apprentissage
 1. **Gestion des WebSockets** : Cycle de vie d'une connexion persistante (Handshake > Subscribe > Heartbeat > Reconnect).
 2. **Traitement de Flux (Buffering)** : Accumulation et transformation de micro-données brutes en structures exploitables (Bougies).
-3. **Logique Financière** : Calcul automatique d'indicateurs complexes (SMA, EMA, RSI, MACD, Stochastique).
+3. **Logique Financière** : Calcul automatique de l'indicateur technique SMA.
 4. **Performance UI** : Prévention des re-renders inutiles lors de la réception de données à haute fréquence.
 
 ## ⚙️ Installation & Configuration

@@ -45,7 +45,7 @@ const Sidebar = ({ isOpen, onClose, selectedSymbol, onSelectSymbol }: SidebarPro
               }}
               className={`w-full text-left px-4 py-3 border-b border-slate-800/30 transition-all group ${
                 selectedSymbol === asset
-                  ? "bg-slate-900 border-l-2 border-l-cyan-500"
+                  ? "bg-slate-900 border-r-2 border-r-cyan-500"
                   : "hover:bg-slate-900/50"
               }`}
             >
