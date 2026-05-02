@@ -20,10 +20,29 @@ Ce projet marque une rupture majeure avec le [Projet 03](../03-cine-fetch-engine
 ## 🎯 Objectifs d'Apprentissage
 1. **Gestion des WebSockets** : Cycle de vie d'une connexion persistante (Handshake > Subscribe > Heartbeat > Reconnect).
 2. **Traitement de Flux (Buffering)** : Accumulation et transformation de micro-données brutes en structures exploitables (Bougies).
+<<<<<<< HEAD
 3. **Logique Financière** : Calcul automatique d'indicateurs complexes (SMA, EMA, RSI, MACD, Stochastique).
+=======
+3. **Logique Financière** : Calcul automatique de l'indicateur technique SMA.
+>>>>>>> 04-synthetix-live
 4. **Performance UI** : Prévention des re-renders inutiles lors de la réception de données à haute fréquence.
 
 ## ⚙️ Installation & Configuration
 1. Cloner uniquement ce projet :
 ```bash
+<<<<<<< HEAD
 npx degit hulrich-baku/learning-react-lab/04-synthetix-live synthetix-live
+=======
+npx degit hulrich-baku/learning-react-lab/04-synthetix-live synthetix-live
+```
+
+2. Installer les dépendances :
+```bash
+npm install
+```
+
+3. Lancer le terminal de trading :
+```Bash
+npm run dev
+```
+>>>>>>> 04-synthetix-live
